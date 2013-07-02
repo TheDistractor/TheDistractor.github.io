@@ -13,13 +13,13 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>rf12registry by TheDistractor</title>
+    <title>First Page by TheDistractor</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>rf12registry</h1>
+        <h1>First Page</h1>
         <h2></h2>
         <a href="https://github.com/TheDistractor" class="button"><small>Follow me on</small>GitHub</a>
       </div>
@@ -28,76 +28,7 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h1>
-<a name="rf12registry" class="anchor" href="#rf12registry"><span class="octicon octicon-link"></span></a>RF12Registry</h1>
-
-<p>This module exports a single class 'RF12RegistryManager' which itself manages the singleton RF12Registry
-(which is the real class we actually use)</p>
-
-<p>RF12Registry implements a simple 'Registry' to enable
-a number of 'RF12Demo.10+' (compatible) 'driver' clients to register their
-services for 'write' actions. The registration is a simple act whereby
-the driver registers a set of 1 or more 'patterns' relating to radio band / radio group
-pairs that it is willing to act on behalf of.</p>
-
-<p>A full registration pattern takes the form /|</p>
-
-<p>e.g if a driver registered with '868/200|%1' it would represent the fact that this
-driver is willing to handle 'write' requests for communications on 868Mhz group 200 
-using the default 'RF12demo.10' direct write format (band,group,node,hdr,byte1,byte2,byten&gt;)</p>
-
-<p>The  parameter may take the following forms:
-%b - the home band of the underlying device the driver manages. i.e. %b/200|%1</p>
-
-<ul>
-<li> - any band i.e. *\/200|%1</li>
-</ul><p>/  - required - seperates  and </p>
-
-<p>The  parameter may take the following forms:
-%g - the home group of the underlying device the driver manages. i.e. 868/%g|%1</p>
-
-<ul>
-<li> - any group i.e. 868/*|%1 </li>
-</ul><p>|  - required - seperates  from </p>
-
-<p>The  parameter may be made up of the following tokens:</p>
-
-<p>%1 - use the default RF12Demo.10 'write' format = '%b,%g,%i,%h,%s&gt;'
-%b - the band parameter - this is aliased to the band code 3,4,8 or 9 for RF12 Driver, or see %B
-%B - passes the band through unchanged - 868 does NOT get changed to 8
-%g - the group parameter
-%i - the destination node parameter
-%h - the header byte parameter
-%s - the actual data parameter that is the real information to be sent over the air.</p>
-
-<p>Drivers are registered in a 'last registration wins' scenario, but drivers are matched
-for writes on a 'first match is used' scenario.
-e.g. if two drivers both register for 868/212, the last driver is the one that is used.
-e.g  if one driver registers for 868/* and other for 868/212, and a write request
-come for 868/212, the first pattern (868/*) will be picked.
-In reality this contention may not matter for 90% use cases.
-(this approach may be updated)</p>
-
-<p>The 'writemask' allows multiple different 'RF12Demo' drivers to have a flexible write
-structure whilst keeping a single 'write' interface.</p>
-
-<p>As an example:</p>
-
-<p>Assuming a write request was as follows:</p>
-
-<p>registry.write(868,200,7,0,"1,1,1,1,1,1,1,1,1,1")</p>
-
-<p>A Normal 'RF12Demo.10' driver handling /dev/ttyAMA0 device could register as '868/200|%1'
-whereby a the above write request would equate to the following:
-'868,200,7,0,1,1,1,1,1,1,1,1,1,1&gt;'
-which will send 10 * 1s to node 7 on band 868 group 200</p>
-
-<p>Another driver which simulates 'RF12Demo.10' but uses a different protocol
-could register the following pattern: '868/199|PUMP %s\r'
-And if sent
-  registry.write(868,200,7,0,"ON")
-would equate to:
-'PUMP ON\r' (note that the driver did not need band/goup etc as it has its own protocol)</p>
+          <p>First Page</p>
         </section>
 
         <aside id="sidebar">
