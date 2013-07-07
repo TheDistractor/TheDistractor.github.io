@@ -29,7 +29,164 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <p>RF12Registry</p>
+<h1>RF12Registry</h1>
+
+<p><br/></p>
+
+<h2>Background</h2>
+
+<p>Originally, I just needed a way to write data to one Jeenode running [RF12demo.9] using node.js. I also only ever needed to write to nodeids' that were on the same 'home' band/group as my listening jeenode. <br />
+This was simple, I just provided my own rf12demo-serial Briq with a way to pick up write requests (I chose to add a small unix domain socket listener inside my version of rf12demo-serial).</p>
+
+<p>So....</p>
+
+<p>Time moves on, and my network of nodes expanded beyond what I ever thought. What I do with those nodes has also expanded far beyond simple reporting of roomnodes etc. I now need to take input and output from and to lots of devices, (not just jeenodes). I also needed to simplify (if you could call it that) my rf12demo-serial variant(s). </p>
+
+<p>Enter the <strong>RF12Registry</strong>.</p>
+
+<h2>Overview</h2>
+
+<p><strong><em>Note:</em></strong> <em>First a word of caution, this update/submission is only v0.1.0. I am currently using v0.2.0 which is slightly mode capable but is also dependant upon infrastructure that is absent in the current HouseMon 0.6.x, so I have separated out a v0.1.0 from my v0.2.0 that seems to function ok - YMMV until I can submit v0.2.0 with all its extra baggage. Still, it you provide valuable benefit.</em></p>
+
+<p>The <em>RF12Registry</em> Briq (and its supporting services) serves to achieve a rather limited set of goals, but it looks complicated as it does this via a set of loosely coupled components. </p>
+
+<p>RF12Registry acts as a central switchboard and allows participating <em>rf12demo-xxxxx</em> compatable services to register their ability to handle 'write' requests using specific <em>band/group</em> patterns. </p>
+
+<p>It then allows other 'input mechanisms' to provide data to be written to one of these registered services by matching the registered <em>band/group</em> of the supporting service to the <em>band/group</em> of the input making the write request. If a match is found, the data to be written is passed onto the matching service to perform the write request.</p>
+
+<p>One important point is that the RF12Registry is able to use a <em>format string</em> provided by the service upon registration to help to format the data to be written. This allows a somewhat simple abstraction mechanism for writing data to different <em>rf12demo-xxxx</em> capable services.</p>
+
+<p>To take advantage of this Briq and the services it can offer you need the following:</p>
+
+<ul>
+<li>This Briq (<em>RF12Registry</em>) and its supporting files.</li>
+<li>An <em>rf12demo-xxxx</em> compatable Briq that supports the RF12Registry
+(like <em>rf12demo-readwrite</em>).</li>
+<li>A way to obtain input and route it to the <em>RF12Registry</em> (like the associated <em>RF12Input</em> Briq).</li>
+</ul>
+
+<p><strong><em>As an example:</em></strong> </p>
+
+<p>You have the requirement to send a 1byte packet of data to a remote node 4 on network 868/100. </p>
+
+<p>The 1byte packet will contain an integer whos' value represents the number of times an onboard LED will flash.</p>
+
+<p>You have a master jeenode connected to your HouseMon computer running the <strong>[RFDemo.9]</strong> or earlier script connected to ttyAMA0. </p>
+
+<h4>Solution:</h4>
+
+<p><strong>STOP</strong> - Step 1 is to upgrade your master jeenode sketch (if possible) to the very latest [RF12Demo.10] or later sketch. A patch has been submitted to slightly enhance the standard Jeelib [RF12Demo.10] and this may well increment the version to [RF12Demo.11] if accepted - please look <a href="https://github.com/jcw/jeelib/pull/51">here for the pull request</a>. 
+*Note:If you cannot upgrade, you may still be able to make use of the RF12Registry using earlier versions of RF12Demo but this requires additional steps that will be added shortly. Additionally you can also still make use of the RF12Registry if your connected node does not use [RF12Demo.xx] at all, but again this will require additional steps I will add shortly.</p>
+
+<p>So, you now have an upgraded jeenode/jeelink running the very latest version of [RF12Demo.10+] from the patch link above.</p>
+
+<ol>
+<li>Install the RF12Registry upgrade, containing RF12Registry, RF12Demo-ReadWrite and RF12Input briq's and support files from <a href="">here</a> or <a href="">here</a>. </li>
+<li>From your updated HouseMon Admin screen, load the new RF12Registry Briq. There is nothing additional to configure in this initial version of the RF12Registry Briq.</li>
+<li><strong>Unload</strong> any existing RF12demo-serial briq's or other Briq's <strong>bound the the serial port of your master jeenode</strong> <em>(ttyAMA0 in example above)</em> you want to work with.
+If you have two+ master nodes, you can leave the ones <strong>NOT</strong> bound to master node we are dealing with (ttyAMA0), and leave them connected via the existing mechanism. rf12demo-readwrite will cooexist quite happily with rf12demo-serial (on different serialports of course)</li>
+<li>Load an instance of RF12Demo-readwrite and on the initial installation screen enter your devices serialport. If your devices baud rate is different than the standard 57600 (e.g as with JNu) adjust the baud rate accordingly. Finally if you are running a sketch of [RF12Demo.10+] (the very latest - see above) you need not adjust the 'Shell Version' parameter. If you are sure you are running [RF12Demo.10] without the patch mentioned above, please enter '10' in the 'Shell Version' field. (This basically provides hints to the RF12Registry for your devices capability where they may not easily determined). Click on Install button. 
+<br/></li>
+</ol>
+
+<p>At this point your device should now carry on being used by rf12demo-readwrite as if it was a standard rf12demo-serial briq in control, it will however be 'write-aware' but not yet configured to do so.</p>
+
+<ol>
+<li><p>The rf12demo-readwrite Briq has additional parameters that can be provided 'after' installation that give it these additional capabilities. Clicking opon the newly 'installed' Briq for rf12demo-readwrite:ttyAMA0 you will see these additional parameters.</p>
+
+<ul><li>Add/Override default CLI commands: 
+<ul><li>This parameter allows you to override the commands given to obtain version and configuration data from your connected sketch. It is configured with the defaults of 'v' for version and '?' to obtain configuration. 
+If you supplied a specific 'Shell Version' then the version command is bypassed.</li></ul></li>
+<li>Initial commands sent on startup:
+<ul><li>This is a carry-over from rf12demo-serial for compatability and allows specific one-time commands to be sent to the sketch every time the Briq is initialised.</li></ul></li>
+<li>write mask(s) [see documentation link above]:
+<ul><li>This parameter is the one that turns on the ability to accept 'write' requests. Going back to our scenario above, we want to write to other nodes (specifically node 4) on the same band/group as our master jeenode is broadcasting on - 868/100. We therefore set this parameter to the following: {%b}/{%g}|{%1}</li></ul></li></ul></li>
+<li><p>When you have confirmed all is correct you can press the 'Update Settings' button. The Briq will now register this pattern with the RF12Registry, effectivly telling the RF12Registry that for 868Mhz, Group 100, this Briq instance will handle write requests. The format for these 'write' requests will be based upon the format string {%1} - see explanation about format strings below.</p></li>
+<li><p>Your Briq handling ttyAMA0 is now processing packets and additionally waiting for 'write' requests for 868Mhz Group 100. </p></li>
+</ol>
+
+<p>Time to send it some input.</p>
+
+<ol>
+<li>Above we mentioned that we were going to send a 1byte packet to nodeid 4 on 868/100. The RF12Input briq provides many ways to do this but we will stick with the simplest. We will use RF12Inputs web page.</li>
+<li>Go ahead and load the RF12Input Briq from the Admin panel. There is nothing additional to configure so we can go straight to the 'Install' button. After a few seconds RF12Input will hopefully show as installed. One of the things RF12Input does it register itself with the socket 3334 (the next one along from the default HouseMon install of 3333) If you have anything competing for this you may want to correct it. (until I get the chance to make this a configuration parameter, you can edit the source if you find a conflict). Finally RF12Input installs a new Web page in the HouseMon menu bar, called 'RF12Input'. Head over to this page, as it provides us an input form to use for write requests.</li>
+<li>Once you are in the RF12Input web page, you will see a simple data entry form. Make sure the correct 'Band' is selected (868 in above scenario), then check 'Group' is 100 (<em>the default is 212</em>). If you remember our target nodeid was going to be 4, so select 4 in the NodeID box, leave 'Header' as 0, and finally enter the 1byte integer that represents the number of LED blinks you want to send to the device, lets say '6'. Then press the 'Send' button.</li>
+</ol>
+
+<p>All being well, you have sent the byte representing 6 to the target node. If you needed to send 2 bytes, you would use:
+<br/></p>
+
+<pre><code>    0,0
+</code></pre>
+
+<p>and 3 bytes would be:</p>
+
+<pre><code>    0,0,0
+</code></pre>
+
+<hr />
+
+<p>Explanation of <strong>'writemasks'</strong>:</p>
+
+<p>A full registration pattern takes the form <code>&lt;band&gt;/&lt;group&gt;|&lt;writemask&gt;</code></p>
+
+<p>e.g if a driver registered with <code>868/200|{%1}</code> it would represent the fact that this
+driver is willing to handle 'write' requests for communications on 868Mhz group 200 
+using the default 'RF12demo.10' direct write format <code>band,group,node,hdr,byte1,byte2,byten&gt;</code></p>
+
+<p>The <code>&lt;band&gt;</code> parameter may take the following forms:
+<code>{%b}</code> - the home band of the underlying device the driver manages. i.e. <code>{%b}/200|{%1}</code>
+<code>*</code>  - any band i.e. <code>*/200|{%1}</code></p>
+
+<p><code>/</code>  - required - seperates <code>&lt;band&gt;</code> and <code>&lt;group&gt;</code></p>
+
+<p>The <code>&lt;group&gt;</code> parameter may take the following forms:
+<code>{%g}</code> - the home group of the underlying device the driver manages. i.e. <code>868/{%g}|{%1}</code>
+<code>*</code>  - any group i.e. <code>868/*|{%1}</code> </p>
+
+<p><code>|</code>  - required - seperates <code>&lt;band/group&gt;</code> from <code>&lt;writemask&gt;</code></p>
+
+<p>The <code>&lt;writemask&gt;</code> parameter may be made up of the following tokens:</p>
+
+<p><code>{%1}</code> - use the default RF12Demo.10 'write' format = <code>{%b},{%g},{%i},{%h},{%s}&gt;</code>
+       nb: if the shell version is set at 9, the <code>{%s}</code> format will be used
+<code>{%b}</code> - the band parameter - this is aliased to the band code 3,4,8 or 9 for RF12 Driver, or see <code>{%B}</code>
+<code>{%B}</code> - passes the band through unchanged - 868 does NOT get changed to 8
+<code>{%g}</code> - the group parameter
+<code>{%i}</code> - the destination node parameter
+<code>{%h}</code> - the header byte parameter
+<code>{%s}</code> - the actual data parameter that is the real information to be sent over the air.
+<code>{\r}</code> - carrage return
+<code>{\n}</code> - line feed</p>
+
+<p>Drivers are registered in a 'last registration wins' scenario, but drivers are matched
+for writes on a 'first match is used' scenario.
+e.g. if two drivers both register for 868/212, the last driver is the one that is used.
+e.g  if one driver registers for 868/* and other for 868/212, and a write request
+come for 868/212, the first pattern (868/*) will be picked.
+In reality this contention may not matter for 90% use cases.
+(this approach may be updated)</p>
+
+<p>The 'writemask' allows multiple different 'RF12Demo' drivers to have a flexible write
+structure whilst keeping a single 'write' interface.</p>
+
+<p>As an example:</p>
+
+<p>Assuming a write request was as follows:</p>
+
+<p><code>registry.write(868,200,7,0,"1,1,1,1,1,1,1,1,1,1")</code></p>
+
+<p>A Normal 'RF12Demo.10' driver handling /dev/ttyAMA0 device could register as <code>868/200|%1</code>
+whereby the above write request would equate to the following:
+<code>'868,200,7,0,1,1,1,1,1,1,1,1,1,1&gt;'</code>
+which will send <code>10</code> * <code>1s</code> to node 7 on band 868 group 200</p>
+
+<p>Another driver which simulates 'RF12Demo.10' but uses a different protocol
+could register the following pattern: <code>868/199|PUMP {%s}{\r}</code>
+And if sent
+  <code>registry.write(868,199,7,0,"ON")</code>
+would equate to:
+<code>PUMP ON\r</code> (note that the driver did not need band/goup etc as it has its own protocol)</p>
         </section>
 
         <aside id="sidebar">
