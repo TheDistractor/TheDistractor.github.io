@@ -115,8 +115,52 @@ The format for these 'write' requests will be based upon the format string {%1} 
 
 Time to send it some input.
 
+8. Above we mentioned that we were going to send a 1byte packet to nodeid 4 on 868/100. The RF12Input briq provides many ways to 
+do this but we will stick with the simplest. We will use RF12Inputs web page.
+9. Go ahead and load the RF12Input Briq from the Admin panel. There is nothing additional to configure so we can go straight to 
+the 'Install' button. After a few seconds RF12Input will hopefully show as installed. One of the things RF12Input does it register 
+itself with the socket 3334 (the next one along from the default HouseMon install of 3333). If you have anything competing for 
+this port you may want to correct it. 
+(until I get the chance to make this a configuration parameter, you can edit the source if you find a conflict). 
+Finally RF12Input installs a new Web page in the HouseMon menu bar, called 'RF12Input'. Head over to this page, as it provides us 
+an input form to use for write requests.
+10. Once you are in the RF12Input web page, you will see a simple data entry form. Make sure the correct 'Band' is selected 
+(868 in above scenario), then check 'Group' is 100 (*the default is 212*). If you remember our target nodeid was going to be 4, 
+so select 4 in the NodeID box, leave 'Header' as 0, and finally enter the 1byte integer that represents the number of LED blinks 
+you want to send to the device, lets say '6'. Then press the 'Send' button.
 
---
+All being well, you have sent the byte representing 6 to the target node. If you needed to send 2 bytes, you would use:
+<br/>
+
+        0,0
+
+and 3 bytes would be:
+
+        0,0,0
+
+___
+
+Explanation of **'writemasks'**:
+
+
+A full registration pattern takes the form `<band>/<group>|<writemask>`
+
+e.g if a driver registered with `868/200|{%1}` it would represent the fact that this
+driver is willing to handle 'write' requests for communications on 868Mhz group 200 
+using the default 'RF12demo.10' direct write format `band,group,node,hdr,byte1,byte2,byten>`
+
+
+The `<band>` parameter may take the following forms:
+`{%b}` - the home band of the underlying device the driver manages. i.e. `{%b}/200|{%1}`
+`*`  - any band i.e. `*/200|{%1}`
+
+`/`  - required - seperates `<band>` and `<group>`
+
+The `<group>` parameter may take the following forms:
+`{%g}` - the home group of the underlying device the driver manages. i.e. `868/{%g}|{%1}`
+`*`  - any group i.e. `868/*|{%1}` 
+
+`|`  - required - seperates `<band/group>` from `<writemask>`
 
 
 
