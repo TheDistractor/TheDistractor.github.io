@@ -5,7 +5,7 @@ title: RF12Registry by TheDistractor
 subtitle: TODO- Information about HouseMon RF12Registry here......
 ---
 
-
+{% raw %}
 
 # RF12Registry 
   
@@ -21,3 +21,6 @@ Time moves on, and my network of nodes expanded beyond what I ever thought. What
 
 Enter the **RF12Registry**.
 
+info....
+
+{% endraw %}
