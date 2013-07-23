@@ -40,14 +40,19 @@ RF12Demo.10 = `{%B},{%g},{%i},{%h},{%s}>`
 RF12Demo.9 = `{%s}`  
 
 
-`{%B}` - the band parameter - this is aliased to the band code 3,4,8 or 9 for RF12 Driver, or see `{%b}`
-`{%b}` - passes the band through unchanged - 868 does NOT get changed to 8
-`{%g}` - the group parameter
-`{%i}` - the source node parameter
-`{%h}` - the header byte parameter
-`{%s}` - the actual data parameter that is the real information to be sent over the air.
-`{\r}` - carrage return
-`{\n}` - line feed
+`{%B}` - the band parameter - this is aliased to the band code 3,4,8 or 9 for RF12 Driver, or see `{%b}`  
+`{%b}` - passes the band through unchanged - 868 does NOT get changed to 8  
+`{%g}`   -  the group parameter  
+`{%i}`   -  the source node parameter  
+`{%h}`   -  the header byte parameter  
+`{%s}`   -  the actual data parameter that is the real information to be sent over the air.  
+`{\r}`   -  carrage return  
+`{\n}`   -  line feed  
+`{\x07}` -  \a  (bell)  
+`{\x1B}` -  \e  (escape)  
+`{\f}`   -  \f  (form feed)  
+`{\t}`   -  \t  (tab)  
+`{\v}`   -  \v  (vertical tab)  
 
 
 Drivers are registered in a 'last registration wins' scenario, but drivers are matched
