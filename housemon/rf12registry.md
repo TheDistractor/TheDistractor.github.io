@@ -65,14 +65,16 @@ You did? OK so you now have an upgraded jeenode/jeelink running the very latest 
 
 You have also installed the Updated components and loaded the relevant Briqs as per [installation](rf12registry-installation.html)
 
+<a name="example-scenario"></a>  
+
 Going back to our scenario above, we want to write to other nodes on the same band/group as our master jeenode is broadcasting on - 868/100.  
 
-We therefore set this parameter to the following: **{%b}/{%g}|{%1}**
+We therefore set the **rf12demo-readwrite** writemask parameter to the following: ``{%b}/{%g}|{%1}``  
 
-These parameters are detailed within the [writemasks](rf12registry-writemasks.html) however as a recap:  
-The {%b} will get replaced with the 'Band' the Jeelink is configured with *(as reported by its configuration string)* - 868.  
-The {%g} will get replaced with the 'Group' the Jeelink is configured with *(as reported by its configuration string)* - 100  
-The {%1} gets replaced with the default 'write' pattern for the relevant version of RF12Demo. (again - see writemasks).
+These parameters are detailed within the [writemasks](rf12demo-writemasks.html) however as a recap:  
+The ``{%b}`` will get replaced with the 'Band' the Jeelink is configured with *(as reported by its configuration string)* - 868.  
+The ``{%g}`` will get replaced with the 'Group' the Jeelink is configured with *(as reported by its configuration string)* - 100  
+The ``{%1}`` gets replaced with the default 'write' pattern for the relevant version of RF12Demo. (again - see writemasks).
   
 When you have confirmed all is correct you can press the 'Update Settings' button. The Briq will now register this pattern with the **RF12Registry**, effectivly telling the **RF12Registry** that for 868Mhz, Group 100, this Briq instance will handle write requests. 
 
