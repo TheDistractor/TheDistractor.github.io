@@ -2,25 +2,14 @@
 layout: housemon
 
 title: RF12Registry by TheDistractor
-subtitle: Updated 2013-07-22 14:50:00
+subtitle: Updated 2013-07-22 14:50:01
 ---
-
+ 
 {% raw %}
 
 # RF12Registry 
   
-<br/>
 
-## Background
-Originally, I just needed a way to write data to one Jeenode running \[RF12demo.9\] using node.js. I also only ever needed to write to nodeids' that were on the same 'home' band/group as my listening jeenode.  
-
-This was simple, I just provided my own rf12demo-serial Briq with a way to pick up write requests *(I chose to add a small unix domain socket listener inside my version of rf12demo-serial)*.
-
-So....
-
-Time moves on, and my network of nodes expanded beyond what I ever thought. What I do with those nodes has also expanded far beyond simple reporting of roomnodes etc. I now need to take input and output from and to lots of devices, (not just jeenodes). I also needed to simplify (if you could call it that) my rf12demo-serial variant(s). 
-
-Enter the **RF12Registry**.
 
 ## Overview
 **Note:** *First a word of caution, this update/submission is only v0.1.0. I am currently using v0.2.0 which is slightly mode capable but is also dependant upon infrastructure that is absent in the current HouseMon 0.6.x, so I have separated out a v0.1.0 from my v0.2.0 that seems to function ok - YMMV until I can submit v0.2.0 with all its extra baggage. Still, it may provide valuable benefit.*
@@ -33,6 +22,9 @@ It then allows other *'input mechanisms'* to provide data to be written to one o
   
 One important point is that the **RF12Registry** is able to use a *format string* provided by the service upon registration to help to format the data to be written. This allows a somewhat simple abstraction mechanism for writing data to different *rf12demo-xxxx* 
 capable services.
+
+If you want to read some background please try [here](rf12registry-background.html)
+
 
 
 To take advantage of this Briq and the services it can offer you need the following:
@@ -93,7 +85,7 @@ Clicking opon the newly 'installed' Briq for **rf12demo-readwrite:ttyAMA0** you 
           *If you supplied a specific 'Shell Version' then the version command is bypassed*.
       - Initial commands sent on startup:
        - *This is a carry-over from rf12demo-serial for compatability and allows specific one-time commands to be sent to the sketch every time the Briq is initialised.* **Note:** *you do not need to put the '?' here, as it is already specified in the CLI commands above*.
-      - write mask(s) [see here](#writemasks):
+      - write mask(s) [see here](rf12registry-writemasks.html):
         - *This parameter is the one that turns on the ability to accept 'write' requests*. 
         
         **Going back to our scenario above, we want 
@@ -123,77 +115,6 @@ All being well, you have sent the byte representing 6 to the target node. If you
 and 3 bytes would be:
 
         0,0,0
-
-___
-
-<a name="writemasks"/>
-Explanation of **'writemasks'**:
-
-
-A full registration pattern takes the form `<band>/<group>|<writemask>`
-
-e.g if a driver registered with `868/200|{%1}` it would represent the fact that this
-driver is willing to handle 'write' requests for communications on 868Mhz group 200 
-using the default 'RF12demo.10' direct write format `band,group,node,hdr,byte1,byte2,byteN>`
-
-
-The `<band>` parameter may take the following forms:
-`{%b}` - the home band of the underlying device the driver manages. i.e. `{%b}/200|{%1}`
-`*`  - any band i.e. `*/200|{%1}`
-
-`/`  - required - seperates `<band>` and `<group>`
-
-The `<group>` parameter may take the following forms:
-`{%g}` - the home group of the underlying device the driver manages. i.e. `868/{%g}|{%1}`
-`*`  - any group i.e. `868/*|{%1}` 
-
-`|`  - required - seperates `<band/group>` from `<writemask>`
-
-The `<writemask>` parameter may be made up of the following tokens:
- 
-`{%1}` - use the default RF12Demo.10 'write' format = `{%B},{%g},{%i},{%h},{%s}>`
-       nb: if the shell version is set at 9, the `{%s}` format will be used
-`{%B}` - the band parameter - this is aliased to the band code 3,4,8 or 9 for RF12 Driver, or see `{%b}`
-`{%b}` - passes the band through unchanged - 868 does NOT get changed to 8
-`{%g}` - the group parameter
-`{%i}` - the destination node parameter
-`{%h}` - the header byte parameter
-`{%s}` - the actual data parameter that is the real information to be sent over the air.
-`{\r}` - carrage return
-`{\n}` - line feed
-
-
-Drivers are registered in a 'last registration wins' scenario, but drivers are matched
-for writes on a 'first match is used' scenario.
-e.g. if two drivers both register for 868/212, the last driver is the one that is used.
-e.g  if one driver registers for 868/\* and other for 868/212, and a write request
-come for 868/212, the first pattern (868/\*) will be picked.
-In reality this contention may not matter for 90% use cases.
-(this approach may be updated)
-
-The 'writemask' allows multiple different 'RF12Demo' drivers to have a flexible write
-structure whilst keeping a single 'write' interface.
-
-As an example:
-
-Assuming a write request was as follows:
-  
-  `registry.write(868,200,7,0,"1,1,1,1,1,1,1,1,1,1")`
-
-A Normal 'RF12Demo.10' driver handling /dev/ttyAMA0 device could register as `868/200|%1`
-whereby the above write request would equate to the following:
-`'868,200,7,0,1,1,1,1,1,1,1,1,1,1>'`
-which will send `10` * `1s` to node 7 on band 868 group 200
-
-
-Another driver which simulates 'RF12Demo.10' but uses a different protocol
-could register the following pattern: `868/199|PUMP {%s}{\r}`
-And if sent
-  `registry.write(868,199,7,0,"ON")`
-would equate to:
-`PUMP ON\r` (note that the driver did not need band/goup etc as it has its own protocol)
-
-
 
 
 
