@@ -6,7 +6,7 @@ title: RF12Demo-ReadWrite by TheDistractor
 
 ---
 
-subtitle: Updated 2013-07-22 14:50:01
+subtitle: Updated 2013-07-22 14:50:05
 
 ## RF12Demo-ReadWrite.
 
