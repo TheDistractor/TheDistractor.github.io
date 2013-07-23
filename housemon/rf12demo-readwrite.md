@@ -3,10 +3,11 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
+subtitle: Updated 2013-07-22 14:50:05
 
 ---
 
-subtitle: Updated 2013-07-22 14:50:05
+{% raw %}
 
 ## RF12Demo-ReadWrite.
 
@@ -52,3 +53,5 @@ Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the
     - *This parameter is the one that turns on the ability to accept 'write' requests*.  
 
 For those following with the basic installation guide, set the writemask field to: ``{%b}/{%g}|{%1}`` and continue with the installation guide.
+
+{% raw %}
