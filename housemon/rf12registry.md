@@ -67,7 +67,7 @@ You did? OK so you now have an upgraded jeenode/jeelink running the very latest 
 
 You have also installed the Updated components and loaded the relevant Briqs as per [installation](rf12registry-installation.html)  
 
-<a name="example-scenario"/>  
+<a name="example-scenario"> </a>  
 
 Going back to our scenario above, we want to write to other nodes on the same band/group as our master jeenode is broadcasting on - 868/100.  
 
@@ -109,7 +109,7 @@ If you had set your writemasks within **rf12demo-readwrite** to:
 
          {%b}/*|{%1}
 
-You would have been able to use this Jeelink and **RF12Input** to send bytes to any node on the 868 band.
+You would have been able to use this Jeelink and **RF12Input** to send bytes to *any* node on *any* group within the 868 band.
 
 
 
