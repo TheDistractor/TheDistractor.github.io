@@ -22,8 +22,8 @@ Time moves on, and my network of nodes expanded beyond what I ever thought. What
 
 Enter the **RF12Registry**.
 
-## Overview ##
-Note: *First a word of caution, this update/submission is only v0.1.0. I am currently using v0.2.0 which is slightly mode capable but is also dependant upon infrastructure that is absent in the current HouseMon 0.6.x, so I have separated out a v0.1.0 from my v0.2.0 that seems to function ok - YMMV until I can submit v0.2.0 with all its extra baggage. Still, it may provide valuable benefit.*
+## Overview
+**Note:** *First a word of caution, this update/submission is only v0.1.0. I am currently using v0.2.0 which is slightly mode capable but is also dependant upon infrastructure that is absent in the current HouseMon 0.6.x, so I have separated out a v0.1.0 from my v0.2.0 that seems to function ok - YMMV until I can submit v0.2.0 with all its extra baggage. Still, it may provide valuable benefit.*
   
 The **RF12Registry** Briq (and its supporting services) serves to achieve a rather limited set of goals, but it looks complicated as it does this via a set of loosely coupled components. 
   
@@ -126,7 +126,7 @@ and 3 bytes would be:
 
 ___
 
-<a name="writemasks"></a>
+<a name="writemasks"/>
 Explanation of **'writemasks'**:
 
 

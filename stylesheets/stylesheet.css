@@ -356,6 +356,17 @@ footer a:hover {
   color: #444;
 }
 
+
+/* lightbulb */
+p > em {
+  font-style: italic;
+}
+
+p > strong {
+  font-weight: bold;
+}
+
+
 /* MISC */
 .clearfix:after {
   clear: both;
