@@ -46,7 +46,7 @@ The **rf12demo-readwrite** Briq has additional parameters that can be provided '
 Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the examples) you will see these additional parameters:  
 
 +  Add/Override default CLI commands:
-    -  test
+  -  test
 
 
 **3**\. For those following with the basic installation guide, set the writemask field to: ``{%b}/{%g}|{%1}`` and continue with the installation guide.
