@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:28 
+subtitle: Updated 2013-07-22 14:50:29 
 
 ---
 
@@ -122,7 +122,9 @@ If you use an RF12Demo.10 compatible device/sketch you should enter ``10`` for t
 
 Currently the device you are controlling must emit its version information using the following syntax:  
 ``[RF12Demo.nn.nn]`` where the ``nn`` are digits optionally displayed with a decimal part.  
-i.e: ``[RF12Demo.10]`` or ``[RF12Demo.10.1]``  
+e.g: ``[RF12Demo.10]`` or ``[RF12Demo.10.1]``  
+The regex used for this match is currently specified as:  
+``/^\[RF12demo\.([0-9]*\.[0-9]+|[0-9]+)]/i``  
 
 
 *It is expected that the name of the script will be made flexible shortly, but for now it* **MUST** *be exactly as shown.*
