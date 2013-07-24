@@ -31,13 +31,13 @@ RF12Demo.10 [compatible] versions (see restrictions).
 ### The first step is basic installation:  
 
 **1**\. Load an instance of **rf12demo-readwrite**, and on the initial installation screen enter your devices serialport (*ttyAMA0 in this example*). If your devices baud rate is different than the standard 57600 (e.g as with JNu which is default of 38400) adjust the baud rate accordingly. Finally if you are running a sketch of \[RF12Demo.10+\] *(the very latest - see above)* you need not adjust the 'Shell Version' parameter.  
-If you are *sure* you are running \[RF12Demo.10\] **without** the patch mentioned above, please enter '10' in the 'Shell Version' field. *(This basically provides hints to the* **RF12Registry** *for your devices capability where they may not easily determined)*.  
+If you are *sure* you are running \[RF12Demo.10\] **without** the patch mentioned above, please enter '10' in the 'Shell Version' field. *(This basically provides hints to the* **RF12Demo-readwrite** *for your devices capability where they may not easily determined)*.  
 
-If you simply *MUST** use RF12Demo.9 please enter the value '9' in the 'Shell Version' field.
+If you simply *MUST** use RF12Demo.9 please enter the value '9' in the 'Shell Version' field.**Failure** to enter '9' for an RF12Demo.9 sketch may cause undesired side effects and will not be supported.
   
 **2**\. Click on the Install button to install the briq. 
   
-At this point your Jeelink device should now carry on being used by **rf12demo-readwrite** as if it was a standard **rf12demo-serial** briq in control, it will however be 'write-aware' but not yet configured to do so.  
+At this point your Jeelink device should now carry on being used by **rf12demo-readwrite** as if it was a standard **rf12demo-serial** briq in control, passing data to your installed drivers/decoders. It will however be 'write-aware' but not yet configured to do so.  
 
 ### The second step is writer configuration:  
 
@@ -48,7 +48,9 @@ Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the
 
 	-  *This parameter allows you to override the commands given to obtain version and configuration data from your connected sketch*.
 	-  *defaults of 'v' for version and '?' to obtain configuration are pre-set*.
-	-  *If you supplied a specific 'Shell Version' then the version command is bypassed*.
+	-  *If you supplied a specific 'Shell Version' then the version command is bypassed (not sent to the device)*.  
+	***See below for structure of this command***.
+	
 
 +  Initial commands sent on startup:
 
@@ -62,12 +64,36 @@ Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the
 **3**\. For those following with the basic installation guide, set the writemask field to: ``{%b}/{%g}|{%1}`` and continue with the installation guide.
 
 
+#### CLI Command structure
+
+CLI commands and supplied in JSON format. The following parameters are supported:  
+
++  "version"  
+   A character string to send to the device to obtain version information.
+
++  "config"  
+   A character string to send to the device to obtain configuration information.
+
+As an example, the default values are implemented as:  ``{"version":'v', "config":'?'}``
+
+As an example, if your sketch produced the version information via the characters '@@' you would override the inbuilt parameter and use:..
+``{"version":'@@'}``
+
+####Initial commands
+
+These are not so much commands, but a sequence of characters that are sent to the device a few milliseconds after each initialisation.  
+As an example, some sketches may implement a command sequence to bring the sketch out of a lock mode, such as '+++'. You can use this mechanism to help you in this situation - YMMV.
+
+#### Writemasks
+
+These have their own page [here](rf12demo-writemasks.html)
+
 
 ## Sketch Restrictions
 
 If you use *RF12Demo.9* sketch you **MUST** specify the 'Shell Version' field as '9'.  
 
-If the writemask for *RF12Demo.9* uses {%1} then the internal mask of {%s} will be used. This means the entire 'data' portion of the request is sent to the sketch untouched and you **MUST** use the native sketch syntax, such as:  
+If the writemask for *RF12Demo.9* uses {%1} *(default)* then the internal mask of {%s} will be used. This means the entire 'data' portion of the request is sent to the sketch untouched and you **MUST** use the native sketch syntax, such as:  
 ``0,0,0,0,0,26s`` send ``0,0,0,0,0`` to node 26. 
 or  
 ``0,0,0,0,0,26a`` send ``0,0,0,0,0`` to node 26 with ack.
@@ -75,13 +101,16 @@ or
 Using this sketch and write format restricts you to the configured band/group unless you want to get very technical!
 
 If you know you will always send out data requiring ACKS, you *could* change your writemask to:  
-{%s},{%h}a  
+``{%s},{%h}a``  
 
 in this case your data portion would only need to contain the packet data, and the header field will be used to build up the command.  
-where 0,0,0,0,0 is the data portion and the header field will contain 26.
+where ``0,0,0,0,0`` is the data portion and the header field will contain ``26`.
 
+Similarly if you knew you only needed send without ack you would use:  
+``{%s},{%h}s``  
 
-
+The default of ``{%1}`` or ``{%s}`` is suggested
+for RF12Demo.9 and allows you to treat the device in a 'raw' mode.
 
 
 
