@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:15 
+subtitle: Updated 2013-07-22 14:50:16 
 
 ---
 
@@ -46,7 +46,7 @@ The **rf12demo-readwrite** Briq has additional parameters that can be provided '
 Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the examples) you will see these additional parameters:  
 
 +  Add/Override default CLI commands:  
-       +  test
+        +  test
 
 
 
