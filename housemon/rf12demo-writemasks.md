@@ -1,7 +1,7 @@
 ---
 layout: housemon
 
-title: RF12Registry-writemasks by TheDistractor
+title: RF12Registry-writemasks by TheDistractor  (aka lightbulb)
 subtitle: Updated 2013-07-22 14:50:30
 ---
 
@@ -39,7 +39,8 @@ The `<writemask>` parameter may be made up of the following tokens:
  
 `{%1}` - use the default 'write' format for the sketch.  
 RF12Demo.10 = `{%B},{%g},{%i},{%h},{%s}>`  
-*(This format allows band/group switching whilst sending)*
+*(This format allows band/group switching whilst sending)*  
+
 RF12Demo.9 = `{%s}`  
 
 

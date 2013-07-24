@@ -1,7 +1,7 @@
 ---
 layout: housemon
 
-title: RF12Demo-ReadWrite by TheDistractor
+title: RF12Demo-ReadWrite by TheDistractor  (aka lightbulb)
 
 subtitle: Updated 2013-07-22 14:50:30 
 
@@ -12,7 +12,8 @@ subtitle: Updated 2013-07-22 14:50:30
 ## RF12Demo-ReadWrite.
 The **RF12Demo-readwrite** briq is an alternative to the **rf12demo-serial** briq where the user wishes to allow for input to be sent to the device the briq controls.
 
-**RF12Demo-readwrite** v0.1.0 can handle the following sketches as 'client devices' via a serial port:
+**RF12Demo-readwrite** v0.1.0 can handle the following sketches as 'client devices' via a serial port:  
+
 RF12Demo.9 (restrictions apply - see below)  
 
 RF12Demo.10 (without version command - restrictions apply - see below)  
@@ -46,7 +47,7 @@ Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the
 
 +  Add/Override default CLI commands:
 
-	-  *This parameter allows you to override the commands given to obtain version and configuration data from your connected sketch*.
+	-  *This parameter allows you to override the commands given to obtain version and configuration data from your connected device*.
 	-  *defaults of 'v' for version and '?' to obtain configuration are pre-set*.
 	-  *If you supplied a specific 'Shell Version' then the version command is bypassed (not sent to the device)*.  
 	***See below for structure of this command***.
@@ -66,7 +67,7 @@ Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the
 
 #### CLI Command structure
 
-CLI commands and supplied in JSON format. The following parameters are supported:  
+CLI commands are supplied in JSON format. The following parameters are supported:  
 
 +  "version"  
    A character string to send to the device to obtain version information.
@@ -118,7 +119,7 @@ If you use RF12Demo.10 **without** the new 'version' command you **MUST** specif
 
 If you use RF12Demo.10 **with** the new 'version' command you may omit this field, as the briq will attempt to query the device to obtain the version.  
 
-If you use an RF12Demo.10 compatible device/sketch you should enter ``10`` for the 'Shell Version' field unless you know that your script responds to a 'version' command *(that you can override in the settings)*
+If you use an RF12Demo.10 ***compatible*** device/sketch you should enter ``10`` for the 'Shell Version' field unless you know that your script responds to a 'version' command *(that you can override in the settings)*
 
 Currently the device you are controlling must emit its version information using the following syntax:  
 ``[RF12Demo.nn.nn]`` where the ``nn`` are digits optionally displayed with a decimal part.  

@@ -1,7 +1,7 @@
 ---
 layout: housemon
 
-title: RF12Registry-installation by TheDistractor
+title: RF12Registry-installation by TheDistractor  (aka lightbulb)
 subtitle: Updated 2013-07-22 14:50:05
 ---
 
@@ -27,11 +27,12 @@ This briq provides a number of input mechanisms that you can harness. It also pr
 
 
 ## Suggested updates:
-A patch was recently submitted to jeelib for a small upgrade to the *rf12demo* sketch. It adds another 'command' to the existing *rf12demo* commands. Specifically it adds a command to obtain the 'version' string of the sketch. From this we can more easily determine the sketches capability. i.e *rf12demo.10* can do more than *rf12demo.9* when it comes to sending out commands. Details of the update are [here](https://github.com/jcw/jeelib/pull/51). *This patch did not increment the rfdemo version number displayed on sketch startup*.
+A patch was recently submitted to [jeelib](https://github.com/jcw/jeelib) for a small upgrade to the *rf12demo* sketch. It adds another 'command' to the existing *rf12demo* commands. Specifically it adds a command to obtain the 'version' string of the sketch. From this we can more easily determine the sketches capability. i.e *rf12demo.10* can do more than *rf12demo.9* when it comes to sending out commands. Details of the update are [here](https://github.com/jcw/jeelib/pull/51). *This patch did not increment the rfdemo version number displayed on sketch startup*.
   
 You can tell if you have this feature by sending the character 'v' to your jeenode connected serial port. If the sketch replies with **\[RF12Demo.10\]** you have the feature. If your script replies with the configuration/help screen, you do not have the feature and an upgrade is suggested.
  
-*Note:If you cannot upgrade, you may still be able to make use of the* **RF12Registry** *using earlier versions of RF12Demo but this requires additional steps that will be added shortly. Additionally you can also still make use of the* **RF12Registry** *if your connected node does not use* \[**RF12Demo.xx**\] *at all, but again this will require additional steps I will add shortly.*
+*Note:If you cannot upgrade, you may still be able to make use of the* **RF12Registry** *using earlier versions of RF12Demo but this requires additional steps. Additionally you can also still make use of the* **RF12Registry** *if your connected node does not use* \[**RF12Demo.xx**\] *at all, but again this will require additional steps.*  
+*(You can check * [here](rf12demo-readwrite.html) *for this information)*
 
 
 Once you have updated your HouseMon installation and confirmed you have the latest RF12Demo.10 sketch flashed onto your Jeelink, you can proceed to install the relevant components.

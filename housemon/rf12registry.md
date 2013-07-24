@@ -1,7 +1,7 @@
 ---
 layout: housemon
 
-title: RF12Registry by TheDistractor
+title: RF12Registry by TheDistractor (aka lightbulb)
 subtitle: Updated 2013-07-22 14:50:30
 ---
  
@@ -59,7 +59,7 @@ You have a jeenode connected to your HouseMon computer running the latest **\[RF
 
 **NB:** Please be sure you are using the very latest version of the **RFDemo.10** script, as it has an important enhancement for version determination.
 
-Details of **RF12Registry** Installation can be found [here](rf12registry-installation.html)
+Details of **RF12Registry** Installation and **RF12Demo** sketch updates can be found [here](rf12registry-installation.html)
 
   
 

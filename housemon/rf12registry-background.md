@@ -1,7 +1,7 @@
 ---
 layout: housemon
 
-title: RF12Registry-background by TheDistractor
+title: RF12Registry-background by TheDistractor  (aka lightbulb)
 subtitle: Updated 2013-07-22 14:50:05
 ---
 
