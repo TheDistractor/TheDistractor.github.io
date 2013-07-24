@@ -366,6 +366,15 @@ p > strong {
   font-weight: bold;
 }
 
+li > em {
+  font-style: italic;
+}
+
+li > strong {
+  font-weight: bold;
+}
+
+
 
 /* MISC */
 .clearfix:after {
