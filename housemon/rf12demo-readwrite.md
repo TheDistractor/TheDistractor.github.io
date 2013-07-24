@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:20 
+subtitle: Updated 2013-07-22 14:50:21 
 
 ---
 
@@ -93,8 +93,12 @@ These have their own page [here](rf12demo-writemasks.html)
 
 If you use *RF12Demo.9* sketch you **MUST** specify the 'Shell Version' field as '9'.  
 
+If the writemask for *RF12Demo.9* uses {%1} *(default)* then the internal mask of {%s} will be used. This means the entire 'data' portion of the request is sent to the sketch untouched and you **MUST** use the native sketch syntax, such as:  
+``0,0,0,0,0,26s`` send ``0,0,0,0,0`` to node 26. 
+or  
+``0,0,0,0,0,26a`` send ``0,0,0,0,0`` to node 26 with ack.
 
 
 
 
-{% raw %}
+{% endraw %}
