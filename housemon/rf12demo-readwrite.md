@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:19 
+subtitle: Updated 2013-07-22 14:50:20 
 
 ---
 
@@ -79,7 +79,7 @@ As an example, the default values are implemented as:  ``{"version":'v', "config
 As an example, if your sketch produced the version information via the characters '@@' you would override the inbuilt parameter and use:..
 ``{"version":'@@'}``
 
-####Initial commands
+#### Initial commands
 
 These are not so much commands, but a sequence of characters that are sent to the device a few milliseconds after each initialisation.  
 As an example, some sketches may implement a command sequence to bring the sketch out of a lock mode, such as '+++'. You can use this mechanism to help you in this situation - YMMV.
