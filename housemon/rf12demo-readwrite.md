@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:26 
+subtitle: Updated 2013-07-22 14:50:27 
 
 ---
 
@@ -121,7 +121,7 @@ If you use RF12Demo.10 **with** the new 'version' command you may omit this fiel
 If you use an RF12Demo.10 compatible device/sketch you should enter ``10`` for the 'Shell Version' field unless you know that your script responds to a 'version' command *(that you can override in the settings)*
 
 Currently the device you are controlling must emit its version information using the following syntax:  
-\[RF12Demo.\<nn\>.\<nn\>\] where the \<nn\> are digits optionally displayed with a decimal part.  
+[RF12Demo.nn.nn] where the nn are digits optionally displayed with a decimal part.  
 i.e: ``[RF12Demo.10]`` or ``[RF12Demo.10.1]``  
 
 
