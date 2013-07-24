@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:22 
+subtitle: Updated 2013-07-22 14:50:23 
 
 ---
 
@@ -101,6 +101,8 @@ or
 
 Using this sketch and write format restricts you to the configured band/group unless you want to get very technical!
 
+If you know you will always send out data requiring ACKS, you *could* change your writemask to:  
+ ``{%s},{%h}a``  
 
 
 {% endraw %}
