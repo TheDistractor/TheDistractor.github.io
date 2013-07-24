@@ -93,38 +93,6 @@ These have their own page [here](rf12demo-writemasks.html)
 
 If you use *RF12Demo.9* sketch you **MUST** specify the 'Shell Version' field as '9'.  
 
-If the writemask for *RF12Demo.9* uses {%1} *(default)* then the internal mask of {%s} will be used. This means the entire 'data' portion of the request is sent to the sketch untouched and you **MUST** use the native sketch syntax, such as:  
-``0,0,0,0,0,26s`` send ``0,0,0,0,0`` to node 26. 
-or  
-``0,0,0,0,0,26a`` send ``0,0,0,0,0`` to node 26 with ack.
-
-Using this sketch and write format restricts you to the configured band/group unless you want to get very technical!
-
-If you know you will always send out data requiring ACKS, you *could* change your writemask to:  
-``{%s},{%h}a``  
-
-in this case your data portion would only need to contain the packet data, and the header field will be used to build up the command.  
-where ``0,0,0,0,0`` is the data portion and the header field will contain ``26`.
-
-Similarly if you knew you only needed send without ack you would use:  
-``{%s},{%h}s``  
-
-The default of ``{%1}`` or ``{%s}`` is suggested
-for RF12Demo.9 and allows you to treat the device in a 'raw' mode.
-
-
-If you use RF12Demo.10 **without** the new 'version' command you **MUST** specify the 'Shell Version' fields as ``10``.  
-
-If you use RF12Demo.10 **with** the new 'version' command you may omit this field, as the briq will attempt to query the device to obtain the version.  
-
-If you use an RF12Demo.10 compatible device/sketch you should enter ``10`` for the 'Shell Version' field unless you know that your script responds to a 'version' command *(that you can override in the settings)*
-
-Currently the device you are controlling must emit its version information using the following syntax:
-[RF12Demo.<nn>.<nn>] where the <nn> are digits optionally displayed with a decimal part.  
-i.e: ``[RF12Demo.10]`` or ``[RF12Demo.10.1]``  
-
-*It is expected that the name of the script will be made flexible shortly, but for now it* **MUST** *be exactly as shown.*
-
 
 
 
