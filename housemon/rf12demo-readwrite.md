@@ -46,18 +46,8 @@ The **rf12demo-readwrite** Briq has additional parameters that can be provided '
 Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the examples) you will see these additional parameters:  
 
 +  Add/Override default CLI commands:
+    -  test
 
-      -  test
-
-      -  *This parameter allows you to override the        commands given to obtain version and             configuration data from your connected           sketch*. 
-      -  *defaults of 'v' for version and '?' to obtain configuration are pre-set*. 
-      -  *If you supplied a specific 'Shell Version' then the version command is bypassed*.
-+ Initial commands sent on startup:
-
-    + *This is a carry-over from rf12demo-serial for compatability and allows specific one-time commands to be sent to the sketch every time the Briq is initialised.* **Note:** *you do not need to put the '?' here, as it is already specified in the CLI commands above*.
-+ write mask(s) [see here](rf12demo-writemasks.html):
-
-    + *This parameter is the one that turns on the ability to accept 'write' requests*.  
 
 **3**\. For those following with the basic installation guide, set the writemask field to: ``{%b}/{%g}|{%1}`` and continue with the installation guide.
 
