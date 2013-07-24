@@ -121,7 +121,7 @@ If you use RF12Demo.10 **with** the new 'version' command you may omit this fiel
 If you use an RF12Demo.10 compatible device/sketch you should enter ``10`` for the 'Shell Version' field unless you know that your script responds to a 'version' command *(that you can override in the settings)*
 
 Currently the device you are controlling must emit its version information using the following syntax:
-[RF12Demo.<nn>.<nn>] where the <nn> are digits optionally displayed with a decimal part.  
+[RF12Demo.\<nn\>.\<nn\>] where the \<nn\> are digits optionally displayed with a decimal part.  
 i.e: ``[RF12Demo.10]`` or ``[RF12Demo.10.1]``  
 
 *It is expected that the name of the script will be made flexible shortly, but for now it* **MUST** *be exactly as shown.*
