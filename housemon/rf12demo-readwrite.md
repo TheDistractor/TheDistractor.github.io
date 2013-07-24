@@ -125,15 +125,6 @@ i.e: ``[RF12Demo.10]`` or ``[RF12Demo.10.1]``
 
 *It is expected that the name of the script will be made flexible shortly, but for now it* **MUST** *be exactly as shown.*
 
-The configuration string emitted by the device must also follow the existing RF12Demo pattern to match the regex:  
-``/^ [A-Z[\\\]\^_@] i(\d+)(\*)? g(\d+) @ (\d\d\d) MHz``  
-
-So:..
-`` ``&#160;`` C i3* g212 @ 868 MHz``  
-would be valid, whereas:  
-`` ``&#160;`` C i3* 212g @ 868 MHz``  
-would not be valid as the 'g' is not in the correct position.
-
 
 
 
