@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:23 
+subtitle: Updated 2013-07-22 14:50:24 
 
 ---
 
@@ -103,6 +103,9 @@ Using this sketch and write format restricts you to the configured band/group un
 
 If you know you will always send out data requiring ACKS, you *could* change your writemask to:  
  ``{%s},{%h}a``  
+
+in this case your data portion would only need to contain the packet data, and the header field will be used to build up the command.  
+where ``0,0,0,0,0`` is the data portion and the header field will contain ``26`.
 
 
 {% endraw %}
