@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:25 
+subtitle: Updated 2013-07-22 14:50:26 
 
 ---
 
@@ -112,6 +112,20 @@ Similarly if you knew you only needed send without ack you would use:
 
 The default of ``{%1}`` or ``{%s}`` is suggested
 for RF12Demo.9 and allows you to treat the device in a 'raw' mode.
+
+
+If you use RF12Demo.10 **without** the new 'version' command you **MUST** specify the 'Shell Version' fields as ``10``.  
+
+If you use RF12Demo.10 **with** the new 'version' command you may omit this field, as the briq will attempt to query the device to obtain the version.  
+
+If you use an RF12Demo.10 compatible device/sketch you should enter ``10`` for the 'Shell Version' field unless you know that your script responds to a 'version' command *(that you can override in the settings)*
+
+Currently the device you are controlling must emit its version information using the following syntax:
+[RF12Demo.<nn>.<nn>] where the <nn> are digits optionally displayed with a decimal part.  
+i.e: ``[RF12Demo.10]`` or ``[RF12Demo.10.1]``  
+
+*It is expected that the name of the script will be made flexible shortly, but for now it* **MUST** *be exactly as shown.*
+
 
 
 {% endraw %}
