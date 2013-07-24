@@ -12,19 +12,19 @@ subtitle: Updated 2013-07-22 14:50:05
 
 
 ## Overview
-**Note:** *First a word of caution, this update/submission is only v0.1.0. I am currently using v0.2.0 which is slightly more capable but is also dependant upon infrastructure that is absent in the current HouseMon 0.6.x, so I have separated out a v0.1.0 from my v0.2.0 that seems to function ok - YMMV until I can submit v0.2.0 with all its extra baggage. Still, it may provide valuable benefit.*
+**Note:** *First a word of caution, this update/submission is only v0.1.0. I am currently using v0.2.0 which is slightly more capable but is also dependant upon infrastructure that is absent in the current HouseMon 0.6.x, so I have separated out a v0.1.0 from my v0.2.0 that seems to function ok - YMMV until I can submit v0.2.0 with all its extra baggage. Still, it may provide valuable benefit, and has also undergone some reasonable testing*
   
 The **RF12Registry** Briq (and its supporting services) serves to achieve a rather limited set of goals.  
 
-a) Provide infrastructure to allow others to develop modules that connect with RF12Demo compatible 'devices'.  
+**a)** Provide infrastructure to allow others to develop modules that connect with RF12Demo compatible 'devices'.  
 
-b). Provide some abstraction from the physical devices themselves in order that upgrades to either in the future are flexibly managed.  
+**b)**. Provide some abstraction from the physical devices themselves in order that upgrades to either the device (sketch) or HouseMon (briq) in the future are flexibly managed.  
 
 It may look complicated to some as it does this via a set of loosely coupled components. Do not panic, just imagine this as a set of Briqs that rely on each other.
   
-**RF12Registry** acts as a central switchboard and allows participating *rf12demo-xxxxx* compatable devices to register their ability to handle 'write' requests using specific *band/group* patterns. 
+**RF12Registry** acts as a central switchboard and allows participating *rf12demo-xxxxx* compatable devices to register their ability to handle 'write' requests via a management briq, using specific *band/group* patterns. 
 
-By using a registry that also acts as a sort of proxy  allows other *'input mechanisms'* to provide data to be written to one of these registered services by matching the registered *band/group* of the supporting service to the *band/group* of the input making the write request. If a match is found, the data to be written is passed onto the matching service to perform the write request.
+By using a registry acting as a sort of proxy device allows other *'input mechanisms'* to provide data to be written to one of these registered services. The Registry does this by matching the registered *band/group* of the supporting service to the *band/group* of the *'input mechanism'* making the write request. If a match is found, the data to be written is passed onto the matching service to perform the write request.
   
 One important point is that the **RF12Registry** is able to use a *format string* provided by the service upon registration to help to format the data to be written. This allows a somewhat simple abstraction mechanism for writing data to different *rf12demo-xxxx* 
 capable devices.
