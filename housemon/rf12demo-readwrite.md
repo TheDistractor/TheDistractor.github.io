@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:21 
+subtitle: Updated 2013-07-22 14:50:22 
 
 ---
 
@@ -98,6 +98,20 @@ If the writemask for *RF12Demo.9* uses {%1} *(default)* then the internal mask o
 or  
 ``0,0,0,0,0,26a`` send ``0,0,0,0,0`` to node 26 with ack.
 
+
+Using this sketch and write format restricts you to the configured band/group unless you want to get very technical!
+
+If you know you will always send out data requiring ACKS, you *could* change your writemask to:  
+``{%s},{%h}a``  
+
+in this case your data portion would only need to contain the packet data, and the header field will be used to build up the command.  
+where ``0,0,0,0,0`` is the data portion and the header field will contain ``26`.
+
+Similarly if you knew you only needed send without ack you would use:  
+``{%s},{%h}s``  
+
+The default of ``{%1}`` or ``{%s}`` is suggested
+for RF12Demo.9 and allows you to treat the device in a 'raw' mode.
 
 
 
