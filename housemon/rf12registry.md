@@ -2,7 +2,7 @@
 layout: housemon
 
 title: RF12Registry by TheDistractor
-subtitle: Updated 2013-07-22 14:50:05
+subtitle: Updated 2013-07-22 14:50:30
 ---
  
 {% raw %}
@@ -16,7 +16,7 @@ subtitle: Updated 2013-07-22 14:50:05
   
 The **RF12Registry** Briq (and its supporting services) serves to achieve a rather limited set of goals.  
 
-**a)** Provide infrastructure to allow others to develop modules that connect with RF12Demo compatible 'devices'.  
+**a)**. Provide infrastructure to allow others to develop modules that connect with RF12Demo compatible 'devices'.  
 
 **b)**. Provide some abstraction from the physical devices themselves in order that upgrades to either the device (sketch) or HouseMon (briq) in the future are flexibly managed.  
 
@@ -38,15 +38,21 @@ To take advantage of this Briq and the services it can offer you need the follow
   - This Briq ( **RF12Registry** ) and its supporting files.  
   - An *rf12demo-xxxx* compatable Briq that supports the **RF12Registry**
     (like *rf12demo-readwrite*).  
-  - A way to obtain input and route it to the **RF12Registry** (like the associated **RF12Input** Briq). Its also very easy to write your own.  
-  
+  - A way to obtain input and route it to the **RF12Registry** (like the associated **RF12Input** Briq).  
+
+Its also very easy to write your own Input Service.  
+
+For more information about **RF12Demo-readwrite** see [here](rf12demo-readwrite.html)  
+
+For more information about **RF12Input** see [here](rf12input.html)  
+
 
 ***As an example:*** 
   
 
 You have the requirement to send a 1byte packet of data to a remote node on network 868/100. 
 
-The 1byte packet will contain an integer whos' value represents the number of times an onboard LED will flash.
+The 1byte packet will contain an integer, the value of which represents the number of times an onboard LED will flash.
 
 You have a jeenode connected to your HouseMon computer running the latest **\[RFDemo.10\]** script connected to ttyAMA0. 
 
@@ -78,7 +84,7 @@ The ``{%b}`` will get replaced with the 'Band' the Jeelink is configured with *(
 The ``{%g}`` will get replaced with the 'Group' the Jeelink is configured with *(as reported by its configuration string)* - 100  
 The ``{%1}`` gets replaced with the default 'write' pattern for the relevant version of RF12Demo. (again - see [writemasks](rf12demo-writemasks.html) ).
   
-When you have confirmed all is correct you can press the 'Update Settings' button. The Briq will now register this pattern with the **RF12Registry**, effectivly telling the **RF12Registry** that for 868Mhz, Group 100, this Briq instance will handle write requests. (*in other words Jeelink on ttyAMA0 will be sent all write requests sent to 868/100*)
+When you have confirmed all is correct you can press the 'Update Settings' button. The Briq will now register this pattern with the **RF12Registry**, effectivly telling the **RF12Registry** that for 868Mhz, Group 100, this Briq instance will handle **ALL** write requests. (*in other words Jeelink on ttyAMA0 will be sent all write requests sent to 868/100*)
 
 Your Briq handling ttyAMA0 is now processing packets and additionally waiting for 'write' requests for 868Mhz Group 100. 
   
@@ -90,7 +96,7 @@ Head over to the **RF12Input** page that was installed when you installed the **
 
 Once you are in the **RF12Input** web page, you will see a simple data entry form. Make sure the correct 'Band' is selected (868 in above scenario), then check 'Group' is 100 (*the default is 212*).   
 
-If you remember our target nodeid was going to be 4, so for a node listening only for its own packets we leave NodeID *(source node)* as 0 and we enter the result of (0x40 | 4) (which is 68) in the 'Header' field *(for more into about how to construct the header byte go to [writemasks](rf12demo-writemasks.html) )*, and finally enter the 1byte integer that represents the number of LED blinks you want to send to the device, lets say '6'. Then press the 'Send' button.
+If you remember, our target nodeid was going to be 4, so for a node listening *only* for its own packets we leave NodeID *(source node)* as 0 and we enter the result of (0x40 | 4) (which is 68) in the 'Header' field *(for more info about how to construct the header byte go to [writemasks](rf12demo-writemasks.html) )*, and finally enter the 1byte integer that represents the number of LED blinks you want to send to the device, lets say '6'. Then press the 'Send' button.
 *So, our full description of the fields now is:  
 Send the digit 6 to destination node 4 on 868/100 from source node 0 on 868/100*. 
 
@@ -101,13 +107,19 @@ All being well, you have sent the byte representing 6 to the target node. If you
 
 and 3 bytes would be:
 
-        0,0,0
+        0,0,0  
+
+The **RF12Input** web page will display a numerical token to the left of the send button if a write request was attempted *(i.e a registered writer was located)*  
+
+Additionally this page contains a listening log for all write requests that pass through the **RF12Registry** you are connected to. You can use this as a mini debug log.
+
+
 
 **A few more examples:**  
 
 If you had set your writemasks within **rf12demo-readwrite** to:  
 
-         {%b}/*|{%1}
+``{%b}/*|{%1}``  
 
 You would have been able to use this Jeelink and **RF12Input** to send bytes to *any* node on *any* group within the 868 band.
 
