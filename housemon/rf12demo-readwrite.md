@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:29 
+subtitle: Updated 2013-07-22 14:50:30 
 
 ---
 
@@ -128,6 +128,9 @@ The regex used for this match is currently specified as:
 
 
 *It is expected that the name of the script will be made flexible shortly, but for now it* **MUST** *be exactly as shown.*
+
+The 'version' is currently used to determine the default writemask format and if the device actually supports writing. Currently any version >= 10.0 is defined to support writing unless a specific writemask is used.
+
 
 
 The configuration string emitted by the device must also follow the existing RF12Demo pattern to match the regex:  

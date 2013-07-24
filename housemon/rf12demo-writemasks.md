@@ -2,7 +2,7 @@
 layout: housemon
 
 title: RF12Registry-writemasks by TheDistractor
-subtitle: Updated 2013-07-22 14:50:05
+subtitle: Updated 2013-07-22 14:50:30
 ---
 
 {% raw %}
@@ -33,10 +33,13 @@ The `<group>` parameter may take the following forms:
 
 `|`  - required - seperates `<band/group>` from `<writemask>`
 
+#### Writemask tokens
+
 The `<writemask>` parameter may be made up of the following tokens:
  
 `{%1}` - use the default 'write' format for the sketch.  
 RF12Demo.10 = `{%B},{%g},{%i},{%h},{%s}>`  
+*(This format allows band/group switching whilst sending)*
 RF12Demo.9 = `{%s}`  
 
 
@@ -89,6 +92,17 @@ And if sent
   `registry.write(868,199,1,68,"ON")`
 would equate to:
 `PUMP ON\r` for destination node 4 (note that the driver did not need band/goup etc as it has its own protocol, and may even send this out as an InfraRed stream)
+
+#### Multiple writemasks
+
+It is possible to specify multiple writemasks for each RF12Demo-readwrite briq instance. This allows for example an instance to handle writes for say groups 200 and 201 only. If you wish to do this you **MUST** format your writemasks as a JSON Array as follows *(using a standard example)*:  
+``["{%b}/200|{%1}","{%b}/201|{%1}"]``  
+
+It is even conceivable that you may supply different writemasks such as:  
+``["{%b}/200|{%1}","{%b}/201|{%s}"]``  
+*although this would probably be a specialised case*.
+
+
 
 I will attempt to supply some sketches/examples that simulate this RF12Demo.10 compatibility, shortly.
 
