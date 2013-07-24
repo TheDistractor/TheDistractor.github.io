@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:12 
+subtitle: Updated 2013-07-22 14:50:13 
 
 ---
 
@@ -45,8 +45,8 @@ At this point your Jeelink device should now carry on being used by **rf12demo-r
 The **rf12demo-readwrite** Briq has additional parameters that can be provided 'after' installation that give it these additional 'write' capabilities.  
 Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the examples) you will see these additional parameters:  
 
-+  Add/Override default CLI commands:
-    -  test
++  Add/Override default CLI commands:  
+     +  test
 
 
 **3**\. For those following with the basic installation guide, set the writemask field to: ``{%b}/{%g}|{%1}`` and continue with the installation guide.
