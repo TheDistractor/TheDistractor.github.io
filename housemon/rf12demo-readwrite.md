@@ -3,7 +3,7 @@ layout: housemon
 
 title: RF12Demo-ReadWrite by TheDistractor
 
-subtitle: Updated 2013-07-22 14:50:08 
+subtitle: Updated 2013-07-22 14:50:09 
 
 ---
 
@@ -45,13 +45,13 @@ At this point your Jeelink device should now carry on being used by **rf12demo-r
 The **rf12demo-readwrite** Briq has additional parameters that can be provided 'after' installation that give it these additional 'write' capabilities.  
 Clicking upon an 'installed' Briq **rf12demo-readwrite:ttyAMA0** (as used in the examples) you will see these additional parameters:  
 
-+ Add/Override default CLI commands:
++  Add/Override default CLI commands:
 
-     + test
+     +  test
 
-     + *This parameter allows you to override the commands given to obtain version and configuration data from your connected sketch*. 
-        + *defaults of 'v' for version and '?' to obtain configuration are pre-set*. 
-        + *If you supplied a specific 'Shell Version' then the version command is bypassed*.
+     +  *This parameter allows you to override the commands given to obtain version and configuration data from your connected sketch*. 
+        +  *defaults of 'v' for version and '?' to obtain configuration are pre-set*. 
+        +  *If you supplied a specific 'Shell Version' then the version command is bypassed*.
 + Initial commands sent on startup:
 
     + *This is a carry-over from rf12demo-serial for compatability and allows specific one-time commands to be sent to the sketch every time the Briq is initialised.* **Note:** *you do not need to put the '?' here, as it is already specified in the CLI commands above*.
