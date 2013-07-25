@@ -8,8 +8,6 @@ subtitle: Updated 2013-07-22 14:50:32
 
 # RF12Input 
 
-**Change log:**   
-+  2013-07-23 v0.1.2 - Added missing UDP Listener.  
 
 
 ## Overview
@@ -40,22 +38,13 @@ You will want a version of netcat that supports both TCP,UDP AND Unix domain soc
 Using netcat (nc) against **RF12Input** is very simle. Using the examples we have been following, sending the digit 6 to nodeid 4 on network 868/100, we would issue the following from the command prompt:  
 
 ##### Unix Domain socket example
-''
-$ printf "send 868 100 0 68 6\\n" | nc -U /tmp/rf12input.sock
-
-''
+``$ printf "send 868 100 0 68 6\n" | nc -U /tmp/rf12input.sock``
 
 ##### UDP IPv4 socket example
-''
-$ printf "send 868 100 0 68 6\\n" | nc -4u -q1 localhost 3334
-
-''
+``$ printf "send 868 100 0 68 6\n" | nc -4u -q1 localhost 3334``
 
 ##### TCP IPv4 socket example
-''
-$ printf "send 868 100 0 68 6\\n" | nc -4 -q1 localhost 3334
-
-''
+``$ printf "send 868 100 0 68 6\n" | nc -4 -q1 localhost 3334``
   
 You can of course use something other than 'printf' to send your data. You could use 'echo' but check your use of arguments (-n, or "\\c" at end of string) depending upon platform YMMV and the device you are talking to. 
 **NB:***the* **RF12Input** *requires the terminating newline character.
