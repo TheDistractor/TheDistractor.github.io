@@ -8,7 +8,6 @@ subtitle: Updated 2013-07-22 14:50:31
 
 # RF12Input 
 
-**Change log:**   
 
 
 ## Overview
