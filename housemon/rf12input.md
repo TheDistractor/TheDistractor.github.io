@@ -1,7 +1,7 @@
 ---
 layout: housemon
 title: RF12Input by TheDistractor (aka lightbulb)
-subtitle: Updated 2013-07-22 14:50:39
+subtitle: Updated 2013-07-24 10:30:06
 ---
 
 {% raw %}
@@ -54,6 +54,15 @@ You can of course use something other than 'printf' to send your data. You could
 
 Using simple tools like ``'nc'`` combined with scripts in Python, Perl, PHP, Node.js, bash etc allow easy control over your devices.  
 I make great use of simple bash scripts and cron to send data to my Jeenodes and compatible devices at predefined times. 
+
+<a name="rf12customisation"> </a>
+#### Additional RF12Input customisation
+
+It is possible to alter the TCP, UDP and Domain Socket binding paramaters using the 'briqs.json' configuration file by using any/all of the following parameters within the config section:  
+
+``"rf12input":{"DomainSocket":"/tmp/rf12input.sock", "Port":3334, "UDPPort": 3334 }``
+
+*(shown are the default values)*
 
 
 

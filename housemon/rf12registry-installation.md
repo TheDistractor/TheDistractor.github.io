@@ -2,7 +2,7 @@
 layout: housemon
 
 title: RF12Registry-installation by TheDistractor  (aka lightbulb)
-subtitle: Updated 2013-07-22 14:50:05
+subtitle: Updated 2013-07-24 10:30:06
 ---
 
 {% raw %}
@@ -43,7 +43,7 @@ Technically the installation order is not that important, and until HouseMon get
 1. From your updated HouseMon Admin screen, load the new **RF12Registry** Briq. There is nothing additional to configure in this initial version of the RF12Registry Briq.
 
 2. Now go ahead and load the **RF12Input** Briq from the Admin panel. There is nothing additional to configure so we can go straight to 
-the 'Install' button. One of the things **RF12Input** does is register itself with the socket 3334 (the next one along from the default HouseMon install of 3333). If you have anything competing for this port you may want to correct it. (by the time you read this there may well be an upgrade to allow it to be changed without editing code, but until I get the chance to apply a patch to make this a configuration parameter, you can edit the source if you find a conflict). 
+the 'Install' button. One of the things **RF12Input** does is register itself with the socket 3334 (the next one along from the default HouseMon install of 3333). If you have anything competing for this port you may want to correct it. ([by the time you read this there may well be an upgrade to allow it to be changed without editing code](rf12input.html#rf12customisation), <del>but until I get the chance to apply a patch to make this a configuration parameter, you can edit the source if you find a conflict</del>). 
 Finally **RF12Input** installs a new Web page in the HouseMon menu bar, called 'RF12Input'.
 
   
