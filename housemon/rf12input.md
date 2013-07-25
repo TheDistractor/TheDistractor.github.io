@@ -1,13 +1,15 @@
 ---
 layout: housemon
 title: RF12Input by TheDistractor (aka lightbulb)
-subtitle: Updated 2013-07-22 14:50:33
+subtitle: Updated 2013-07-22 14:50:34
 ---
 
 {% raw %}
 
 # RF12Input 
 
+**Change log:**   
++  2013-07-23 v0.1.2 - Added missing UDP Listener.  
 
 
 ## Overview
