@@ -1,12 +1,15 @@
 ---
 layout: housemon
 title: RF12Input by TheDistractor (aka lightbulb)
-subtitle: Updated 2013-07-22 14:50:30
+subtitle: Updated 2013-07-22 14:50:31
 ---
 
 {% raw %}
 
 # RF12Input 
+
+**Changelog:**   
+2013-07-23 v0.1.2 - Added missing UDP Listener.
 
 ## Overview
 
@@ -36,22 +39,25 @@ You will want a version of netcat that supports both TCP,UDP AND Unix domain soc
 Using netcat (nc) against **RF12Input** is very simle. Using the examples we have been following, sending the digit 6 to nodeid 4 on network 868/100, we would issue the following from the command prompt:  
 
 ##### Unix Domain socket example
-'''bash
-$ echo "send 868 100 0 68 6" | nc -U /tmp/rf12input.sock
+''
+$ printf "send 868 100 0 68 6\n" | nc -U /tmp/rf12input.sock
 
-'''
+''
 
 ##### UDP IPv4 socket example
-'''bash
-$ echo "send 868 100 0 68 6" | nc -4u -q1 localhost 3334
+''
+$ printf "send 868 100 0 68 6\n" | nc -4u -q1 localhost 3334
 
-'''
+''
 
 ##### TCP IPv4 socket example
-'''bash
-$ echo "send 868 100 0 68 6" | nc -4 -q1 localhost 3334
+''
+$ printf "send 868 100 0 68 6\n" | nc -4 -q1 localhost 3334
 
-'''
+''
+  
+You can of course use something other than 'printf' to send your data. You could use 'echo' but check your use of arguments (-n, or "\c" at end of string) depending upon platform YMMV and the device you are talking to. 
+**NB:***the* **RF12Input** *requires the terminating newline character.
 
 Using simple tools like 'nc' combined with scripts in Python, Perl, PHP, Node.js, bash etc allow easy control over your devices.  
 I make great use of simple bash scripts and cron to send data to my Jeenodes and compatible devices at predefined times. 
