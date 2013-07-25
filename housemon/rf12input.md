@@ -58,7 +58,7 @@ I make great use of simple bash scripts and cron to send data to my Jeenodes and
 <a name="rf12customisation"> </a>
 #### Additional RF12Input customisation
 
-It is possible to alter the TCP, UDP and Domain Socket binding paramaters using the 'briqs.json' configuration file by using any/all of the following parameters within the config section:  
+It is possible to alter the TCP, UDP and Domain Socket binding paramaters using the ['briqs.json'](https://github.com/jcw/housemon/blob/develop/docs/briq-api.md) configuration file by using any/all of the following parameters within the config section:  
 
 ``"rf12input":{"DomainSocket":"/tmp/rf12input.sock", "Port":3334, "UDPPort": 3334 }``
 
