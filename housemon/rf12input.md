@@ -41,6 +41,7 @@ You will want a version of netcat that supports both TCP,UDP AND Unix domain soc
 Using netcat (nc) against **RF12Input** is very simle. Using the examples we have been following, sending the digit 6 to nodeid 4 on network 868/100, we would issue the following from the command prompt:  
 
 ##### Unix Domain socket example
+``$ printf "send 868 100 0 68 6\n" | nc -U /tmp/rf12input.sock``
 
 
 
