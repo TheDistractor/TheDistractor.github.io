@@ -8,8 +8,7 @@ subtitle: Updated 2013-07-22 14:50:31
 
 # RF12Input 
 
-**Changelog:**   
-+  2013-07-23 v0.1.2 - Added missing UDP Listener.  
+**Change log:**   
 
 
 ## Overview
