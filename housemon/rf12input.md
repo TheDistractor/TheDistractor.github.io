@@ -1,13 +1,15 @@
 ---
 layout: housemon
 title: RF12Input by TheDistractor (aka lightbulb)
-subtitle: Updated 2013-07-22 14:50:31
+subtitle: Updated 2013-07-22 14:50:32
 ---
 
 {% raw %}
 
 # RF12Input 
 
+**Change log:**   
++  2013-07-23 v0.1.2 - Added missing UDP Listener.  
 
 
 ## Overview
@@ -39,23 +41,23 @@ Using netcat (nc) against **RF12Input** is very simle. Using the examples we hav
 
 ##### Unix Domain socket example
 ''
-$ printf "send 868 100 0 68 6\n" | nc -U /tmp/rf12input.sock
+$ printf "send 868 100 0 68 6\\n" | nc -U /tmp/rf12input.sock
 
 ''
 
 ##### UDP IPv4 socket example
 ''
-$ printf "send 868 100 0 68 6\n" | nc -4u -q1 localhost 3334
+$ printf "send 868 100 0 68 6\\n" | nc -4u -q1 localhost 3334
 
 ''
 
 ##### TCP IPv4 socket example
 ''
-$ printf "send 868 100 0 68 6\n" | nc -4 -q1 localhost 3334
+$ printf "send 868 100 0 68 6\\n" | nc -4 -q1 localhost 3334
 
 ''
   
-You can of course use something other than 'printf' to send your data. You could use 'echo' but check your use of arguments (-n, or "\c" at end of string) depending upon platform YMMV and the device you are talking to. 
+You can of course use something other than 'printf' to send your data. You could use 'echo' but check your use of arguments (-n, or "\\c" at end of string) depending upon platform YMMV and the device you are talking to. 
 **NB:***the* **RF12Input** *requires the terminating newline character.
 
 Using simple tools like 'nc' combined with scripts in Python, Perl, PHP, Node.js, bash etc allow easy control over your devices.  
