@@ -1,7 +1,7 @@
 ---
 layout: housemon
 title: RF12Input by TheDistractor (aka lightbulb)
-subtitle: Updated 2013-07-22 14:50:38
+subtitle: Updated 2013-07-22 14:50:39
 ---
 
 {% raw %}
@@ -51,6 +51,10 @@ Using netcat (nc) against **RF12Input** is very simle. Using the examples we hav
 
 You can of course use something other than 'printf' to send your data. You could use 'echo' but check your use of arguments (``-n``, or ``\c`` at end of string) depending upon platform YMMV and the device you are talking to. 
 **NB:** *the* **RF12Input** *requires the terminating newline character* (``\n``)
+
+Using simple tools like ``'nc'`` combined with scripts in Python, Perl, PHP, Node.js, bash etc allow easy control over your devices.  
+I make great use of simple bash scripts and cron to send data to my Jeenodes and compatible devices at predefined times. 
+
 
 
 {% endraw %}
