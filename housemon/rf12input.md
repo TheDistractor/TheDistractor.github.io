@@ -1,7 +1,7 @@
 ---
 layout: housemon
 title: RF12Input by TheDistractor (aka lightbulb)
-subtitle: Updated 2013-07-22 14:50:36
+subtitle: Updated 2013-07-22 14:50:38
 ---
 
 {% raw %}
@@ -49,6 +49,8 @@ Using netcat (nc) against **RF12Input** is very simle. Using the examples we hav
 ##### TCP IPv4 socket example
 ``$ printf "send 868 100 0 68 6\n" | nc -4 -q1 localhost 3334``
 
+You can of course use something other than 'printf' to send your data. You could use 'echo' but check your use of arguments (``-n``, or ``\c`` at end of string) depending upon platform YMMV and the device you are talking to. 
+**NB:** *the* **RF12Input** *requires the terminating newline character* (``\n``)
 
 
 {% endraw %}
